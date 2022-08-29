@@ -1,4 +1,14 @@
-
+// Christian Bonilla
+// CPSC 120-01
+// 2022-8-29
+// Alton77@csu.fullerton.edu
+// @alton7759
+//
+// Lab 00-00
+// Partners: @peteranteater
+//
+// Thiss code wil change fahrenheit to celsius
+//
 #include <cmath>
 #include <iostream>
 
@@ -10,40 +20,14 @@ int main(int argc, char const *argv[]) {
   // For integer variables assigning them 0 or other integer value is a good
   // practice. For doubles and floats using NAN which means 'not a number' is a
   // good value to use.
-int fahrenheit = 0;double celsius = NAN;fahrenheit = 451;celsius =
+   int fahrenheit = 0;
+   double celsius = NAN;
+   fahrenheit = 451;
+   celsius =
+ 
+       fahrenheit * 9.0 / 5.0 + 32.0;
+   cout << fahrenheit << " degrees Fahrenheit is " << celsius
+         << " degrees Celsius.\n";
+    return 0;
+  }
 
-
-
-fahrenheit
-              *
-
-
-
-
-                        9.0
-/
-
-
-
-
-                                                                              5.0 +
-
-
-
-
-
-32.0;cout<<fahrenheit
-
-
-
-
-
-<< " degrees Fahrenheit is " <<
-celsius
-
-
-
-
-
-
-                                             << " degrees Celsius.\n";return 0;}
