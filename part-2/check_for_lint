@@ -1,0 +1,118 @@
+#!/usr/bin/env python3
+#
+# ************************************************************************
+# * Dear Student - there is nothing in this file that you need to change.*
+# * Please do not make changes to this file.                             *
+# ************************************************************************
+#
+# Copyright 2022 Michael Shafae
+# 
+# Redistribution and use in source and binary forms, with or without
+# modification, are permitted provided that the following conditions are met:
+# 
+# 1. Redistributions of source code must retain the above copyright notice,
+#    this list of conditions and the following disclaimer.
+# 
+# 2. Redistributions in binary form must reproduce the above copyright notice,
+#    this list of conditions and the following disclaimer in the documentation
+#    and/or other materials provided with the distribution.
+# 
+# THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
+# AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+# IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+# ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE 
+# LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR 
+# CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
+# SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
+# INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
+# CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
+# ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
+# POSSIBILITY OF SUCH DAMAGE.
+#
+
+"""Tool to help students check their program for lint.
+    Requires clang/LLVM toolchain."""
+
+import os
+import os.path
+import sys
+
+MAIN_DIR = os.path.split(os.path.abspath(__file__))[0]
+action_dir = os.path.join(os.path.join(MAIN_DIR, '..'), '.action')
+sys.path.append(action_dir)
+
+from logger import setup_logger
+
+try:
+    from srcutilities import lint_check, build
+except ImportError as e:
+    python_dir = os.path.join(os.path.join(MAIN_DIR, '..'), '.python/lib/python3.8/site-packages')
+    black_dir = os.path.join(python_dir, 'black-22.6.0-py3.8.egg')
+    pathspec_dir = os.path.join(python_dir, 'pathspec-0.9.0-py3.8.egg')
+    click_dir = os.path.join(python_dir, 'click-8.1.3-py3.8.egg')
+    # mypy_extensions_dir = os.path.join(python_dir, 'mypy_extensions')
+    sys.path.insert(0, python_dir)
+    sys.path.insert(0, black_dir)
+    sys.path.insert(0, pathspec_dir)
+    sys.path.insert(0, click_dir)
+    # sys.path.insert(0, mypy_extensions_dir)
+    from srcutilities import lint_check, build
+
+
+def main():
+    """Entry point, lint csuf_to_sacremento.cc."""
+    logger = setup_logger()
+    status = 0
+    _in_file = 'quadratic_formula.cc'
+    global MAIN_DIR
+    in_file = os.path.join(MAIN_DIR, _in_file)
+    logger.info('Linting file: %s', in_file)
+    if not os.path.exists(in_file):
+        logger.error('File %s does not exist. Exiting.', in_file)
+        status = 1
+    elif not build(in_file, 'p2'):
+        logger.error('%s is no longer compiling!', in_file)
+        logger.warning('A program that does not compile does not get graded.')
+        logger.warning('Use the compiler to see where the program is broken.')
+        logger.warning(
+            'You can use git to revert your changes and ask your instructor for help.'
+        )
+        status = 1
+    else:
+        # regex \s+-\s(key:)\s+([a-zA-Z\-\.]+)\s+(value:)\s+([a-zA-Z_\[\]\^\+\(\)\*\$\'\"\-0-9]+)
+        # {$1: $2, $3 $4}, 
+        # src https://gist.github.com/airglow923/1fa3bda42f2b193920d7f46ee8345e04
+        tidy_opts = (
+            '-checks="*,-misc-unused-parameters,'
+            '-modernize-use-trailing-return-type,-google-build-using-namespace,'
+            '-cppcoreguidelines-avoid-magic-numbers,-readability-magic-numbers"'
+            ' -config="{CheckOptions: [ {key: readability-identifier-naming.VariableCase, value: lower_case}, { key: readability-identifier-naming.FunctionCase, value: CamelCase }, {key: readability-identifier-naming.GlobalConstantCase,  value: UPPER_CASE}, {key: readability-identifier-naming.GlobalConstantPrefix, value: k} ]}"'
+        )
+        lint_warnings = lint_check(in_file, tidy_opts, skip_compile_cmd=True)
+        if len(lint_warnings) != 0:
+            logger.error('Linter found improvements.')
+            logger.warning('\n'.join(lint_warnings))
+            status = 1
+            logger.error("🤯😳😤😫🤬")
+            logger.error("Use the output from this program to help guide you.")
+            logger.error("If you get stuck, ask your instructor for help.")
+            logger.error(
+                "Remember, you can find the Google C++ style online "
+                "at https://google.github.io/styleguide/cppguide.html."
+            )
+        else:
+            logger.info('😀 Linting passed 🥳')
+            logger.info('This is not an auto-grader.')
+            logger.info(
+                'Make sure you followed all the instructions and requirements.'
+            )
+    if os.path.exists('compile_commands.json'):
+        os.unlink('compile_commands.json')
+    if os.path.exists('p2'):
+        os.unlink('p2')
+
+    sys.exit(status)
+
+
+if __name__ == '__main__':
+    main()
