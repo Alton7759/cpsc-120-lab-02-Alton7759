@@ -4,7 +4,7 @@
 // Alton77@csu.fullerton.edu
 // @alton7759
 //
-// Lab 00-00
+// Lab 2
 // Partners: @peteranteater
 //
 // Thiss code will change fahrenheit to celsius
