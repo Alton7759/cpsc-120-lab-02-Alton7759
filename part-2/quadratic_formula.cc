@@ -6,6 +6,7 @@
 //
 // Lab 2
 // Partners: @peteranteater
+// This does the Quardratic equation for us
 
 #include <cmath>
 #include <iostream>
