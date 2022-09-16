@@ -1,12 +1,14 @@
 // Christian Bonilla
 // CPSC 120-01
-// 2022-8-29
-// Alton77@csu.fullerton.edu
+// 2022-9-15
+// alton77@csu.fullerton.edu
 // @alton7759
 //
-// Lab 2
+// Lab 02-02
 // Partners: @peteranteater
-// This does the Quardratic equation for us
+//
+// this will do the quadratic formula for us!
+//
 
 #include <cmath>
 #include <iostream>
