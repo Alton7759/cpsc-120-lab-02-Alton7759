@@ -5,7 +5,7 @@
 // @alton7759
 //
 // Lab 2
-// Partners: @peteranteater
+// Partners: @annavera38
 //
 // Thiss code will change fahrenheit to celsius
 //
