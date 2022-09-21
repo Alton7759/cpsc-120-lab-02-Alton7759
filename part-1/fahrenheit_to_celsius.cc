@@ -1,13 +1,13 @@
-// Christian Bonilla
+// Christian Alton bonilla
 // CPSC 120-01
-// 2022-9-15
-// alton77@csu.fullerton.edu
+// 2022-09-21
+// Alton77@csu.fullerton.edu
 // @alton7759
 //
-// Lab 2
+// Lab 01-01
 // Partners: @annavera38
 //
-// Tthis helpes us get clesius from fahrenheit!
+// prints the change from fahrenheit to celsius
 //
 
 #include <cmath>
