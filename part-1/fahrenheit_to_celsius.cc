@@ -1,14 +1,20 @@
 // Christian Bonilla
 // CPSC 120-01
-// 2022-8-29
-// Alton77@csu.fullerton.edu
+// 2022-9-15
+// alton77@csu.fullerton.edu
 // @alton7759
 //
+<<<<<<< HEAD
 // Lab 2
 // Partners: @annavera38
+=======
+// Lab 02-01
+// Partners: @peteranteater
+>>>>>>> 627e88394c35b051750191e9ee26513012332a6b
 //
-// Thiss code will change fahrenheit to celsius
+// Tthis helpes us get clesius from fahrenheit!
 //
+
 #include <cmath>
 #include <iostream>
 
