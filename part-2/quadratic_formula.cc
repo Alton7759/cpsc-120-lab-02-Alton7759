@@ -4,17 +4,9 @@
 // alton77@csu.fullerton.edu
 // @alton7759
 //
-<<<<<<< HEAD
 // Lab 2
 // Partners: @annavera38
 // This does the Quardratic equation for us
-=======
-// Lab 02-02
-// Partners: @peteranteater
-//
-// this will do the quadratic formula for us!
-//
->>>>>>> 627e88394c35b051750191e9ee26513012332a6b
 
 #include <cmath>
 #include <iostream>
