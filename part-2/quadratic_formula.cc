@@ -1,12 +1,14 @@
-// Christian Bonilla
+// Christian Alton bonilla
 // CPSC 120-01
-// 2022-9-15
-// alton77@csu.fullerton.edu
+// 2022-09-21
+// Alton77@csu.fullerton.edu
 // @alton7759
 //
-// Lab 2
+// Lab 01-02
 // Partners: @annavera38
-// This does the Quardratic equation for us
+//
+// it prints the outout if the quadratic formal in you put numbers in
+//
 
 #include <cmath>
 #include <iostream>
