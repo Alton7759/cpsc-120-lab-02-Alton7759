@@ -5,7 +5,7 @@
 // @alton7759
 //
 // Lab 2
-// Partners: @@annavera38
+// Partners: @annavera38
 //
 // This code says hello world!
 //
