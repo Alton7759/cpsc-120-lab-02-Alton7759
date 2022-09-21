@@ -1,13 +1,13 @@
-// Christian Bonilla
+// Christian Alton bonilla
 // CPSC 120-01
-// 2022-8-29
+// 2022-09-21
 // Alton77@csu.fullerton.edu
 // @alton7759
 //
-// Lab 2
+// Lab 01-03
 // Partners: @annavera38
 //
-// This code says hello world!
+// it prints out Hello World!
 //
 
 #include <iostream>
