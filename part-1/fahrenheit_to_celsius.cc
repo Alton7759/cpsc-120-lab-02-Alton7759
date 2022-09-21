@@ -4,13 +4,8 @@
 // alton77@csu.fullerton.edu
 // @alton7759
 //
-<<<<<<< HEAD
 // Lab 2
 // Partners: @annavera38
-=======
-// Lab 02-01
-// Partners: @peteranteater
->>>>>>> 627e88394c35b051750191e9ee26513012332a6b
 //
 // Tthis helpes us get clesius from fahrenheit!
 //
